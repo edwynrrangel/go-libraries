@@ -17,7 +17,7 @@ import (
 
 var (
 	mockHttpClient *mockCustomHttp.MockHttpClient
-	httpsTest      customhttp.CustomHttp
+	httpsTest      customhttp.Http
 )
 
 func casesSetup(t *testing.T) func() {

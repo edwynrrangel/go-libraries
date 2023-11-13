@@ -15,8 +15,8 @@ type HttpClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-//go:generate mockgen -destination=../../mocks/custom-http/connection.go -package=customhttp github.com/edwynrrangel/go-libraries/pkg/custom-http CustomHttp
-type CustomHttp interface {
+//go:generate mockgen -destination=../../mocks/custom-http/http.go -package=customhttp github.com/edwynrrangel/go-libraries/pkg/custom-http Http
+type Http interface {
 	DoRequest(params ParamsRequest, expectedStatusCode int, body, bodyError interface{}) (string, error)
 }
 
@@ -32,7 +32,7 @@ type ParamsRequest struct {
 	QueryParams map[string]string
 }
 
-func NewCustomHttp(client HttpClient, timeout time.Duration, skipVerifyTLS bool) CustomHttp {
+func NewCustomHttp(client HttpClient, timeout time.Duration, skipVerifyTLS bool) Http {
 
 	if client != nil {
 		return &customHttp{
